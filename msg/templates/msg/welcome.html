@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .left-panel {
+            flex: 1;
+        }
+
+        .copilot-frame {
+            flex: 1;
+            border: none;
+            height: 400px;
+            min-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h1>Welcome to Django!</h1>
+
+        </div>
+
+        <iframe
+            class="copilot-frame"
+            src="https://copilotstudio.microsoft.com/environments/441040f4-3d01-e21a-8410-79808681d315/bots/cr7d8_weatherForecast/webchat?__version__=2">
+        </iframe>
+        
+    </div>
+</body>
+</html>

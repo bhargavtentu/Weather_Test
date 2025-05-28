@@ -1,0 +1,141 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Rainfall Forecast API",
+    "version": "1.0.0"
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    }
+  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "paths": {
+    "/api/rainfall_forecast/": {
+      "post": {
+        "summary": "Get rainfall forecast by timeframe",
+        "description": "Returns rainfall forecast data based on the selected timeframe: week, month, or year.",
+        "operationId": "getRainfallForecast",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "timeframe": {
+                    "type": "string",
+                    "enum": ["week", "month", "year"],
+                    "description": "Timeframe for rainfall forecast: 'week', 'month', or 'year'."
+                  }
+                },
+                "required": ["timeframe"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response with rainfall forecast.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "forecast": {
+                      "type": "array",
+                      "description": "List of rainfall forecast data for the selected timeframe.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "date": {
+                            "type": "string",
+                            "format": "date",
+                            "description": "Date of forecast entry."
+                          },
+                          "rainfall": {
+                            "type": "number",
+                            "description": "Predicted rainfall in mm."
+                          }
+                        }
+                      }
+                    },
+                    "graph_url": {
+                      "type": "string",
+                      "description": "Public URL to the rainfall chart image",
+                      "example": "https://6acc-103-123-173-19.ngrok-free.app/media/rainfall_chart.png"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Test forecast using GET method",
+        "description": "Used to test rainfall forecast for a given timeframe via browser.",
+        "operationId": "testRainfallForecast",
+        "parameters": [
+          {
+            "name": "timeframe",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["week", "month", "year"]
+            },
+            "description": "Timeframe to get forecast for testing: week, month, or year"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Forecast response for GET request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "forecast": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "date": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "rainfall": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    },
+                    "graph_url": {
+                      "type": "string",
+                      "description": "Public URL to the rainfall chart image",
+                      "example": "https://6acc-103-123-173-19.ngrok-free.app/media/i1.jfif"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://6acc-103-123-173-19.ngrok-free.app"
+    }
+  ]
+}
