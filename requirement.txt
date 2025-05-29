@@ -8,7 +8,6 @@ drf-spectacular==0.28.0
 idna==3.10
 inflection==0.5.1
 jsonschema==4.23.0
-ngrok==1.4.0
 PyYAML==6.0.2
 referencing==0.36.2
 requests==2.32.3
@@ -17,3 +16,5 @@ sqlparse==0.5.3
 tzdata==2025.2
 uritemplate==4.1.1
 urllib3==2.4.0
+gunicorn==20.1.0
+whitenoise==6.9.0
